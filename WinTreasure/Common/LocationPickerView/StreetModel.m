@@ -1,0 +1,24 @@
+//
+//  StreetModel.m
+//  iLight
+//
+//  Created by Apple on 15/5/25.
+//  Copyright (c) 2015年 linitial. All rights reserved.
+//
+
+#import "StreetModel.h"
+
+
+@implementation StreetModel
+
+- (id)initWithDictionary:(NSDictionary *)dic {
+    self = [super init];
+    if (self) {
+        self.StreetCode = [dic objectForKey:@"StreetCode"];
+        self.StreetPinyin = [dic objectForKey:@"StreetPinyin"];
+        self.StreetName = [dic objectForKey:@"StreetName"];
+        self.StreetId = [dic objectForKey:@"StreetId"];
+    }
+    return self;
+}
+@end

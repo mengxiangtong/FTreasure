@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="LogisticsCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="物流状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fPK-n7-ibD">
+                        <rect key="frame" x="35" y="15" width="270" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="物流状态更新时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2C-GA-80g">
+                        <rect key="frame" x="35" y="41" width="270" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Z2C-GA-80g" secondAttribute="trailing" constant="15" id="56Q-HL-Afv"/>
+                    <constraint firstItem="fPK-n7-ibD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="7O0-wP-9KC"/>
+                    <constraint firstItem="fPK-n7-ibD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Nwx-Zo-a6F"/>
+                    <constraint firstAttribute="bottom" secondItem="Z2C-GA-80g" secondAttribute="bottom" constant="8" id="l3H-HI-AAi"/>
+                    <constraint firstItem="Z2C-GA-80g" firstAttribute="top" secondItem="fPK-n7-ibD" secondAttribute="bottom" constant="8" id="tDW-F4-lI0"/>
+                    <constraint firstAttribute="trailing" secondItem="fPK-n7-ibD" secondAttribute="trailing" constant="15" id="tbI-ad-Acu"/>
+                    <constraint firstItem="Z2C-GA-80g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="vtx-cQ-NTv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="statusLabel" destination="fPK-n7-ibD" id="Oa3-Ml-0S8"/>
+                <outlet property="timeLabel" destination="Z2C-GA-80g" id="ctw-PU-lu6"/>
+            </connections>
+            <point key="canvasLocation" x="318" y="393"/>
+        </tableViewCell>
+    </objects>
+</document>

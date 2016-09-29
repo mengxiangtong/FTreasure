@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="153" id="KGk-i7-Jjw" customClass="ShopListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cr5-cg-Wwy">
+                        <rect key="frame" x="15" y="12" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="2bt-V7-lNx"/>
+                            <constraint firstAttribute="width" constant="80" id="Cpf-f0-vS7"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAi-SY-ltb">
+                        <rect key="frame" x="103" y="19" width="209" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ORr-10-ZT2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="US1-AQ-OOB">
+                        <rect key="frame" x="103" y="67" width="209" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MhX-dp-rFt" customClass="ChangeListCountView">
+                        <rect key="frame" x="103" y="93" width="152" height="36"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="eS7-Mm-5tB"/>
+                            <constraint firstAttribute="width" constant="152" id="r7V-Vl-AeQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MAi-SY-ltb" secondAttribute="trailing" constant="8" id="5Ps-mu-0do"/>
+                    <constraint firstItem="Cr5-cg-Wwy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5gY-Wj-dXZ"/>
+                    <constraint firstItem="US1-AQ-OOB" firstAttribute="top" secondItem="MAi-SY-ltb" secondAttribute="bottom" constant="8" id="LnR-Om-owY"/>
+                    <constraint firstItem="MhX-dp-rFt" firstAttribute="leading" secondItem="US1-AQ-OOB" secondAttribute="leading" id="NKV-Gl-xaC"/>
+                    <constraint firstItem="MAi-SY-ltb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="NX9-6u-mja"/>
+                    <constraint firstItem="US1-AQ-OOB" firstAttribute="leading" secondItem="Cr5-cg-Wwy" secondAttribute="trailing" constant="8" id="UdL-Fi-bZs"/>
+                    <constraint firstAttribute="trailing" secondItem="US1-AQ-OOB" secondAttribute="trailing" constant="8" id="W0x-c7-Bsu"/>
+                    <constraint firstItem="Cr5-cg-Wwy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="cxT-Ue-bSc"/>
+                    <constraint firstItem="MhX-dp-rFt" firstAttribute="top" secondItem="US1-AQ-OOB" secondAttribute="bottom" constant="8" id="cyy-d3-Eiu"/>
+                    <constraint firstItem="MAi-SY-ltb" firstAttribute="leading" secondItem="Cr5-cg-Wwy" secondAttribute="trailing" constant="8" id="kku-D8-1Ty"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="344" y="505.5"/>
+        </tableViewCell>
+    </objects>
+</document>

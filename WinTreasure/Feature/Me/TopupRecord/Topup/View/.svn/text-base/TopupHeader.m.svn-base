@@ -1,0 +1,131 @@
+//
+//  TopupHeader.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/17.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "TopupHeader.h"
+
+@interface TopupHeader () <UITextFieldDelegate>
+{
+    UIButton *_selectedButton;
+    CGFloat kHeaderButtonWidth;
+}
+@property (nonatomic, strong) NSArray *amountArray;
+
+@property (nonatomic, strong) UIView *btnContainer;
+
+@end
+
+const CGFloat kHeaderButtonHeight = 30.0;
+const CGFloat kHeaderButtonPadding = 15.0;
+
+@implementation TopupHeader
+
+- (NSArray *)amountArray {
+    if (!_amountArray) {
+        _amountArray = @[@[@"20",@"50"],@[@"100",@"200"],@[@"500",@"其他金额"]];
+    }
+    return _amountArray;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        kHeaderButtonWidth = (kScreenWidth-(self.amountArray.count+1)*kHeaderButtonPadding)/self.amountArray.count;
+        self.backgroundColor = UIColorHex(0xD5D5D5);
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    YYLabel *chooseLabel = [YYLabel new];
+    chooseLabel.origin = CGPointMake(15, 15);
+    chooseLabel.size = CGSizeMake(kScreenWidth-15*2, 18);
+    chooseLabel.text = @"选择充值金额（元）";
+    chooseLabel.font = SYSTEM_FONT(17);
+    [self addSubview:chooseLabel];
+    
+    _btnContainer = [[UIView alloc]initWithFrame:({
+        CGRect rect = {0,chooseLabel.bottom+15,kScreenWidth,kHeaderButtonHeight*2+kHeaderButtonPadding*3};
+        rect;
+    })];
+    _btnContainer.backgroundColor = [UIColor whiteColor];
+    for (int j=0; j<2; j++) {
+        for (int i=0; i<3; i++) {
+            if (i*j==2) {
+                UITextField *field = [[UITextField alloc]initWithFrame:({
+                    CGRect rect = {kHeaderButtonPadding*(i+1)+kHeaderButtonWidth*i, kHeaderButtonPadding*(j+1)+kHeaderButtonHeight*j,kHeaderButtonWidth, kHeaderButtonHeight};
+                    rect;
+                })];
+                field.tag = 888;
+                field.font = SYSTEM_FONT(15);
+                field.placeholder = _amountArray[i][j];
+                field.layer.borderWidth = CGFloatFromPixel(2);
+                field.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+                field.textAlignment = NSTextAlignmentCenter;
+                field.delegate = self;
+                field.clearButtonMode = UITextFieldViewModeWhileEditing;
+                field.keyboardType = UIKeyboardTypeNumberPad;
+                [_btnContainer addSubview:field];
+            } else {
+                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+                button.layer.borderWidth = CGFloatFromPixel(2);
+                button.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+                button.titleLabel.font = SYSTEM_FONT(15);
+                button.origin = CGPointMake(kHeaderButtonPadding*(i+1)+kHeaderButtonWidth*i, kHeaderButtonPadding*(j+1)+kHeaderButtonHeight*j);
+                button.size = CGSizeMake(kHeaderButtonWidth, kHeaderButtonHeight);
+                [button setTitleColor:UIColorHex(999999) forState:UIControlStateNormal];
+                [button setTitleColor:kDefaultColor forState:UIControlStateSelected];
+                [button addTarget:self action:@selector(chooseMoney:) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitle:_amountArray[i][j] forState:UIControlStateNormal];
+                [_btnContainer addSubview:button];
+            }
+        }
+    }
+    [self addSubview:_btnContainer];
+    
+    YYLabel *wayLabel = [YYLabel new];
+    wayLabel.origin = CGPointMake(15, _btnContainer.bottom+15);
+    wayLabel.size = CGSizeMake(kScreenWidth-15*2, 18);
+    wayLabel.text = @"选择付款方式";
+    wayLabel.font = SYSTEM_FONT(17);
+    [self addSubview:wayLabel];
+    
+    self.height = wayLabel.bottom+15;
+}
+
+- (void)chooseMoney:(UIButton *)sender {
+    [self endEditing:YES];
+    UITextField *textField = [_btnContainer viewWithTag:888];
+    textField.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+
+    _selectedButton.selected = NO;
+    _selectedButton.userInteractionEnabled = YES;
+    _selectedButton.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+
+    sender.selected = !sender.selected;
+    sender.userInteractionEnabled = NO;
+    sender.layer.borderColor = kDefaultColor.CGColor;
+    _selectedButton = sender;
+    _coinAmount = [_selectedButton titleForState:UIControlStateNormal].numberValue;
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.layer.borderColor = kDefaultColor.CGColor;
+    _selectedButton.selected = NO;
+    _selectedButton.userInteractionEnabled = YES;
+    _selectedButton.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    textField.layer.borderColor = kDefaultColor.CGColor;
+    _coinAmount = textField.text.numberValue;
+
+}
+
+@end

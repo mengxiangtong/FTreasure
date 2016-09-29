@@ -1,0 +1,75 @@
+//
+//  NoticeSetViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/30.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "NoticeSetViewController.h"
+#import "NoticeSetCell.h"
+
+@interface NoticeSetViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *titles;
+
+@end
+
+@implementation NoticeSetViewController
+
+- (NSArray *)titles {
+    if (!_titles) {
+        _titles = @[@"商品揭晓通知",@"夜间免打扰"];
+    }
+    return _titles;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"揭晓通知设置";
+    
+}
+
+#pragma mark - UITableViewDataSource, UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.titles.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NoticeSetCell *cell = [NoticeSetCell cellWithTableView:tableView];
+    cell.textLabel.text = _titles[indexPath.section];
+    return cell;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    YYLabel *label = [YYLabel new];
+    label.origin = CGPointMake(15, 10);
+    label.size = CGSizeMake(kScreenWidth, 14);
+    label.font = SYSTEM_FONT(10);
+    label.textColor = UIColorHex(666666);
+    label.text = @"      22点至8点之间不发送通知";
+    return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section==1) {
+        return 34;
+    }
+    return 0.0001;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 15.0;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+@end

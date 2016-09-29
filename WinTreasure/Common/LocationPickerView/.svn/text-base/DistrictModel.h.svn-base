@@ -1,0 +1,22 @@
+//
+//  DistrictModel.h
+//  iLight
+//
+//  Created by Apple on 15/5/22.
+//  Copyright (c) 2015年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface DistrictModel : NSObject
+
+@property (nonatomic) NSString *DistrictCode;
+@property (nonatomic) NSString *DistrictId;
+@property (nonatomic) NSString *DistrictPinyin;
+@property (nonatomic) NSString *DistrictName;
+
+@property (nonatomic, strong) NSMutableArray *streetArr;
+
+- (id)initWithDictionary:(NSDictionary *)dic;
+
+@end

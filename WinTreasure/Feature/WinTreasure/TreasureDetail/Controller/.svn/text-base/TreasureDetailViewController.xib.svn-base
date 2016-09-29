@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TreasureDetailViewController">
+            <connections>
+                <outlet property="tableView" destination="Tph-RC-Ife" id="kUT-t1-uha"/>
+                <outlet property="view" destination="tCv-rA-9II" id="8Fm-7M-eBL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tCv-rA-9II">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tph-RC-Ife">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="3WM-sB-kju"/>
+                        <outlet property="delegate" destination="-1" id="Ndd-cQ-hN1"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Tph-RC-Ife" secondAttribute="trailing" id="XuV-Vc-DFf"/>
+                <constraint firstItem="Tph-RC-Ife" firstAttribute="leading" secondItem="tCv-rA-9II" secondAttribute="leading" id="eTI-c9-M3t"/>
+                <constraint firstAttribute="bottom" secondItem="Tph-RC-Ife" secondAttribute="bottom" constant="60" id="tDw-rA-7cX"/>
+                <constraint firstItem="Tph-RC-Ife" firstAttribute="top" secondItem="tCv-rA-9II" secondAttribute="top" id="ta9-Ev-xcy"/>
+            </constraints>
+            <point key="canvasLocation" x="283" y="343"/>
+        </view>
+    </objects>
+</document>

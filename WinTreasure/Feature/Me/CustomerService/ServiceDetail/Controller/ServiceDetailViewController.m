@@ -1,0 +1,24 @@
+//
+//  ServiceDetailViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/7/6.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "ServiceDetailViewController.h"
+
+@interface ServiceDetailViewController ()
+
+@end
+
+@implementation ServiceDetailViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"问题详情";
+}
+
+
+
+@end

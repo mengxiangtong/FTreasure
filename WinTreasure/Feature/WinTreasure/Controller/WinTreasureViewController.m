@@ -1,0 +1,269 @@
+//
+//  WinTreasureViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/5/31.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "WinTreasureViewController.h"
+#import "TreasureDetailViewController.h"
+#import "ProductCategoryViewController.h"
+#import "CategoryDetailViewController.h"
+#import "AdvertiseViewController.h"
+#import "QuestionViewController.h"
+#import "ShareViewController.h"
+#import "SearchViewController.h"
+#import "WinTreasureCell.h"
+#import "WinTreasureLayout.h"
+#import "WinTreasureHeader.h"
+#import "WinTreasureMenuHeader.h"
+
+@interface WinTreasureViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,WinTreasureCellDelegate, TSAnimationDelegate,DZNEmptyDataSetDelegate,DZNEmptyDataSetSource>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic, strong) NSMutableArray *datasource;
+
+@property (nonatomic, strong) WinTreasureHeader *header;
+
+/**c产品图片(动画)
+ */
+@property (nonatomic, strong) UIImageView *productView;
+
+
+@end
+
+static NSString *WinTreasureCellIdentifier = @"winTreasureCellIdentifier";
+static NSString *WinTreasureMenuHeaderIdentifier = @"winTreasureMenuHeaderIdentifier";
+
+
+@implementation WinTreasureViewController
+#pragma mark - lazy load
+- (NSMutableArray *)datasource {
+    if (!_datasource) {
+        _datasource = [NSMutableArray array];
+    }
+    return _datasource;
+}
+
+- (WinTreasureHeader *)header {
+    if (!_header) {
+        _header = [[WinTreasureHeader alloc]initWithFrame:({
+            CGRect rect = {0,-[WinTreasureHeader height],kScreenWidth,[WinTreasureHeader height]};
+            rect;
+        })];
+    }
+    return _header;
+}
+
+- (UIImageView *)productView {
+    if (!_productView) {
+        _productView = [[UIImageView alloc]initWithFrame:CGRectZero];
+        _productView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _productView;
+}
+
+#pragma mark - view cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setTitleView:@"首页顶部logo"];
+    [self setLeftImageNamed:@"searchicon" action:@selector(search)];
+    [self configCollectionView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setNavigationBarBackgroundImage:[UIImage imageWithColor:kDefaultColor] tintColor:nil textColor:[UIColor whiteColor] statusBarStyle:UIStatusBarStyleLightContent];
+    [self setBadgeValue:[AppDelegate getAppDelegate].value atIndex:3];
+}
+
+#pragma mark - init subviews
+- (void)configCollectionView {
+    _collectionView.contentInset = UIEdgeInsetsMake([WinTreasureHeader height], 0, 0, 0);
+    [_collectionView registerNib:NIB_NAMED(@"WinTreasureCell") forCellWithReuseIdentifier:WinTreasureCellIdentifier];
+    [_collectionView registerClass:[WinTreasureMenuHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WinTreasureMenuHeaderIdentifier];
+    @weakify(self);
+    _collectionView.mj_header =  [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        @strongify(self);
+        CGFloat delayTime = dispatch_time(DISPATCH_TIME_NOW, 2);
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [self getData];
+            [self.collectionView.mj_header endRefreshing];
+        });
+    }];
+    _collectionView.mj_header.ignoredScrollViewContentInsetTop = [WinTreasureHeader height];
+    [_collectionView.mj_header beginRefreshing];
+
+}
+
+- (void)setupHeaderEvents {
+    @weakify(self);
+    [_header selectItem:^(UIButton *sender) {
+        NSLog(@"点击%@",[sender titleForState:UIControlStateNormal]);
+        @strongify(self);
+        [self setBackItem];
+        switch (sender.tag) {
+            case 0: {
+                ProductCategoryViewController *vc = [[ProductCategoryViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1: {
+                CategoryDetailViewController *vc = [[CategoryDetailViewController alloc]init];
+                vc.isFromHome = YES;
+                [self pushController:vc];
+            }
+                break;
+            case 2: {
+                [self pushController:[[ShareViewController alloc]init]];
+            }
+                break;
+            case 3: {
+                [self pushController:[[QuestionViewController alloc]init]];
+            }
+                break;
+            default:
+                break;
+        }
+    }];
+    
+    [_header selectNotice:^(NSUInteger index) {
+        NSLog(@"点击通知消息");
+        @strongify(self);
+        [self setBackItem];
+        TreasureDetailViewController *vc = [[TreasureDetailViewController alloc]init];
+        [self pushController:vc];
+    }];
+    
+    _header.imageBlock = ^(id object) {
+        NSLog(@"点击了ImageView");
+        @strongify(self);
+        [self setBackItem];
+        [self pushController:[[AdvertiseViewController alloc]init]];
+    };
+}
+
+#pragma mark - methods 
+- (void)getData {
+    for (int i=0; i<8; i++) {
+        WinTreasureModel *model = [[WinTreasureModel alloc]init];
+        [self.datasource addObject:model];
+    }
+    [_collectionView reloadData];
+    [self.tabBarController.tabBar showBadgeOnItemIndex:2];
+    if (self.datasource.count>0) {
+        [_collectionView addSubview:self.header];
+        [self setupHeaderEvents];
+    }
+}
+
+- (void)search {
+    [self setBackItem];
+    [self pushController:[[SearchViewController alloc]init]];
+}
+
+#pragma mark - delegates 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.datasource.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    WinTreasureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:WinTreasureCellIdentifier forIndexPath:indexPath];
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    cell.model = _datasource[indexPath.row];
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return [WinTreasureCell size];
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    WinTreasureMenuHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:WinTreasureMenuHeaderIdentifier forIndexPath:indexPath];
+    [header selectAMenu:^(id object) {
+        UIButton *sender = (UIButton *)object;
+        NSLog(@"点击%@",[sender titleForState:UIControlStateNormal]);
+   
+    }];
+    [header aescend:^{
+        NSLog(@"aecend");
+    }];
+    [header descend:^{
+        NSLog(@"decend");
+    }];
+    return header;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(kScreenWidth, _datasource.count > 0 ? [WinTreasureMenuHeader menuHeight]:0);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    TreasureDetailViewController *vc = [[TreasureDetailViewController alloc]init];
+    vc.showType = TreasureDetailHeaderTypeNotParticipate;
+    vc.model = _datasource[indexPath.row];
+    [self pushController:vc];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 0.5;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.25;
+}
+
+#pragma mark - WinTreasureCellDelegate 
+#pragma mark - 加入清单
+- (void)addShoppingList:(WinTreasureCell *)cell indexPath:(NSIndexPath *)indexPath {
+    if ([TSAnimation sharedAnimation].isShowing) {
+        return;
+    }
+    CGRect listRect = self.tabBarController.tabBar.frame;
+    listRect.origin.x = 3*kScreenWidth/5+kScreenWidth/5/2;
+    listRect.size.width = kScreenWidth/5.0;
+    WinTreasureModel *model = _datasource[indexPath.row];
+    if (!model.isAdded) {
+        [AppDelegate getAppDelegate].value += 1;
+    }
+    model.isAdded = YES;
+    [_datasource replaceObjectAtIndex:indexPath.row withObject:model];
+    
+    CGRect parentRectA = [cell.contentView convertRect:cell.productImgView.frame toView:self.tabBarController.view];
+    CGRect parentRectB = [self.view convertRect:listRect toView:self.tabBarController.view];
+    [self.tabBarController.view addSubview:self.productView];
+    self.productView.frame = parentRectA;
+    self.productView.image = cell.productImgView.image;
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(self.productView.centerX, self.productView.centerY)];
+    [path addQuadCurveToPoint:CGPointMake(parentRectB.origin.x, parentRectB.origin.y-kNavigationBarHeight) controlPoint:CGPointMake(self.productView.centerX+30, self.productView.centerY+20)];
+    [TSAnimation sharedAnimation].delegate = self;
+    [[TSAnimation sharedAnimation] throwTheView:self.productView path:path isRotated:YES endScale:0.1];
+}
+
+#pragma mark - DZNEmptyDataSetDelegate,DZNEmptyDataSetSource
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"empty_placeholder"];
+}
+
+#pragma mark - TSAnimationDelegate;
+- (void)animationFinished {
+    [self setBadgeValue:[AppDelegate getAppDelegate].value atIndex:3];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+@end

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="EarlyPubLishCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-h0-ItC">
+                        <rect key="frame" x="10" y="4" width="300" height="141"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcX-1E-PqA">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="33"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期号：305260045(揭晓时间:2016-06-10 20:20:20)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3V7-uu-nzI">
+                                        <rect key="frame" x="5" y="9" width="290" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3V7-uu-nzI" secondAttribute="trailing" constant="5" id="Mjp-pm-9yY"/>
+                                    <constraint firstItem="3V7-uu-nzI" firstAttribute="leading" secondItem="NcX-1E-PqA" secondAttribute="leading" constant="5" id="QJI-xO-VWL"/>
+                                    <constraint firstItem="3V7-uu-nzI" firstAttribute="centerY" secondItem="NcX-1E-PqA" secondAttribute="centerY" id="c5r-0t-jpC"/>
+                                    <constraint firstAttribute="height" constant="33" id="j5c-A9-N47"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="curry" translatesAutoresizingMaskIntoConstraints="NO" id="1Or-TD-5NZ">
+                                <rect key="frame" x="5" y="41" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="4bJ-ii-RYi"/>
+                                    <constraint firstAttribute="height" constant="44" id="PsQ-CF-fmS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="获奖者：斯蒂芬库里" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-Qf-KU6">
+                                <rect key="frame" x="57" y="41" width="243" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="754" text="（旧金山IP:192.168.0.1）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmr-j1-0D7">
+                                <rect key="frame" x="57" y="61" width="243" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.41960784313725491" green="0.60784313725490191" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="用户ID：952730（唯一不变标识）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVH-dG-aYU">
+                                <rect key="frame" x="57" y="81" width="243" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幸运号码：952730" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWF-Jk-SbW">
+                                <rect key="frame" x="57" y="101" width="243" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="本期参与：1000人次" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8q-A5-DNR">
+                                <rect key="frame" x="57" y="117" width="243" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1Or-TD-5NZ" firstAttribute="leading" secondItem="HEX-h0-ItC" secondAttribute="leading" constant="5" id="3gZ-QQ-rIv"/>
+                            <constraint firstAttribute="trailing" secondItem="dmr-j1-0D7" secondAttribute="trailing" id="6My-1V-DO6"/>
+                            <constraint firstAttribute="bottom" secondItem="I8q-A5-DNR" secondAttribute="bottom" constant="8" id="9l0-wf-MHo"/>
+                            <constraint firstItem="1Or-TD-5NZ" firstAttribute="top" secondItem="NcX-1E-PqA" secondAttribute="bottom" constant="8" id="A2m-Ul-sgE"/>
+                            <constraint firstAttribute="trailing" secondItem="tWF-Jk-SbW" secondAttribute="trailing" id="FQP-9s-xf1"/>
+                            <constraint firstItem="I8q-A5-DNR" firstAttribute="leading" secondItem="tWF-Jk-SbW" secondAttribute="leading" id="FhT-yh-W36"/>
+                            <constraint firstItem="c0Z-Qf-KU6" firstAttribute="top" secondItem="1Or-TD-5NZ" secondAttribute="top" id="HNY-Uu-DPy"/>
+                            <constraint firstAttribute="trailing" secondItem="NcX-1E-PqA" secondAttribute="trailing" id="Hgy-qc-lOD"/>
+                            <constraint firstItem="tWF-Jk-SbW" firstAttribute="top" secondItem="QVH-dG-aYU" secondAttribute="bottom" constant="4" id="NYb-F6-24R"/>
+                            <constraint firstItem="dmr-j1-0D7" firstAttribute="leading" secondItem="c0Z-Qf-KU6" secondAttribute="leading" id="Non-zt-rFy"/>
+                            <constraint firstAttribute="trailing" secondItem="I8q-A5-DNR" secondAttribute="trailing" id="PhT-ab-heb"/>
+                            <constraint firstItem="c0Z-Qf-KU6" firstAttribute="leading" secondItem="1Or-TD-5NZ" secondAttribute="trailing" constant="8" id="hh7-Vu-AWE"/>
+                            <constraint firstItem="dmr-j1-0D7" firstAttribute="top" secondItem="c0Z-Qf-KU6" secondAttribute="bottom" constant="4" id="laF-v8-X9N"/>
+                            <constraint firstItem="NcX-1E-PqA" firstAttribute="leading" secondItem="HEX-h0-ItC" secondAttribute="leading" id="lbv-n7-6TL"/>
+                            <constraint firstItem="tWF-Jk-SbW" firstAttribute="leading" secondItem="QVH-dG-aYU" secondAttribute="leading" id="pW8-Ek-rKP"/>
+                            <constraint firstItem="QVH-dG-aYU" firstAttribute="leading" secondItem="dmr-j1-0D7" secondAttribute="leading" id="qjp-dn-yNv"/>
+                            <constraint firstAttribute="trailing" secondItem="QVH-dG-aYU" secondAttribute="trailing" id="s6R-Nb-QEA"/>
+                            <constraint firstItem="I8q-A5-DNR" firstAttribute="top" secondItem="tWF-Jk-SbW" secondAttribute="bottom" constant="4" id="vSx-kU-3V6"/>
+                            <constraint firstAttribute="trailing" secondItem="c0Z-Qf-KU6" secondAttribute="trailing" id="wqa-Va-DNV"/>
+                            <constraint firstItem="QVH-dG-aYU" firstAttribute="top" secondItem="dmr-j1-0D7" secondAttribute="bottom" constant="4" id="x6W-sX-0Nr"/>
+                            <constraint firstItem="NcX-1E-PqA" firstAttribute="top" secondItem="HEX-h0-ItC" secondAttribute="top" id="zHp-YU-i1e"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="HEX-h0-ItC" secondAttribute="bottom" constant="4" id="AOW-l4-kRj"/>
+                    <constraint firstItem="HEX-h0-ItC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BHa-P5-Gdu"/>
+                    <constraint firstAttribute="trailing" secondItem="HEX-h0-ItC" secondAttribute="trailing" constant="10" id="cMi-c8-fei"/>
+                    <constraint firstItem="HEX-h0-ItC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="fFZ-FX-RYw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="containerView" destination="HEX-h0-ItC" id="cFi-G9-5nK"/>
+                <outlet property="idLabel" destination="QVH-dG-aYU" id="qmu-xn-pIK"/>
+                <outlet property="ipLabel" destination="dmr-j1-0D7" id="C02-qD-4SA"/>
+                <outlet property="luckyNoLabel" destination="tWF-Jk-SbW" id="Tbq-bL-1K3"/>
+                <outlet property="participateLabel" destination="I8q-A5-DNR" id="AfC-BH-CPf"/>
+                <outlet property="periodLabel" destination="3V7-uu-nzI" id="NvP-yr-KvK"/>
+                <outlet property="winnerImgView" destination="1Or-TD-5NZ" id="h80-u8-FD5"/>
+                <outlet property="winnerLabel" destination="c0Z-Qf-KU6" id="vo7-1d-RqR"/>
+            </connections>
+            <point key="canvasLocation" x="507" y="553"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="curry" width="103" height="103"/>
+    </resources>
+</document>

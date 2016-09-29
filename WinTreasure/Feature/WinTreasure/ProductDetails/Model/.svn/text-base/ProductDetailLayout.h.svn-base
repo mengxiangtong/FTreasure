@@ -1,0 +1,18 @@
+//
+//  ProductDetailLayout.h
+//  WinTreasure
+//
+//  Created by Apple on 16/7/4.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "ProductDetailModel.h"
+
+@interface ProductDetailLayout : NSObject
+
+@property (nonatomic, strong) ProductDetailModel *model;
+
+@property (nonatomic, assign) CGFloat height;
+
+@end

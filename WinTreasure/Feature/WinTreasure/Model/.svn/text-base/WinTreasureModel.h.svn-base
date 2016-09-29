@@ -1,0 +1,27 @@
+//
+//  WinTreasureModel.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/1.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface WinTreasureModel : NSObject
+
+@property (nonatomic, strong) NSMutableArray *adImgUrls;
+
+@property (nonatomic, strong) NSMutableArray *notices;
+
+@property (nonatomic, copy) NSString *productImgUrl;
+
+@property (nonatomic, copy) NSString *productName;
+
+@property (nonatomic, copy) NSString *publishProgress;
+
+@property (nonatomic, assign) BOOL isAdded;
+
+@property (nonatomic, assign) CGFloat height;
+
+@end

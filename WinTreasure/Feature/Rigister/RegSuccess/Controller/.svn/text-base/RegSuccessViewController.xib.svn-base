@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegSuccessViewController">
+            <connections>
+                <outlet property="infoLabel" destination="1Dc-Hf-73s" id="9kY-Ok-0MV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Dc-Hf-73s">
+                    <rect key="frame" x="90" y="90" width="450" height="61"/>
+                    <string key="text">恭喜您已注册成功，账号为：
+138****3424
+请返回登录界面。</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="支付成功" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-7f-akB">
+                    <rect key="frame" x="30" y="97" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="1AL-OR-IOu"/>
+                        <constraint firstAttribute="height" constant="48" id="gM1-e2-rv4"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGm-0k-paf">
+                    <rect key="frame" x="30" y="171" width="540" height="44"/>
+                    <color key="backgroundColor" red="0.81568627449999997" green="0.13725490200000001" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="r9J-MC-hQr"/>
+                    </constraints>
+                    <state key="normal" title="返回"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="popToLogin" destination="-1" eventType="touchUpInside" id="55d-ar-rbK"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="SGm-0k-paf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="5ld-ZL-SFs"/>
+                <constraint firstItem="1Dc-Hf-73s" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="90" id="EvE-9Z-w4S"/>
+                <constraint firstItem="SGm-0k-paf" firstAttribute="top" secondItem="1Dc-Hf-73s" secondAttribute="bottom" constant="20" id="Jxq-TL-aSG"/>
+                <constraint firstItem="GSP-7f-akB" firstAttribute="top" secondItem="1Dc-Hf-73s" secondAttribute="bottom" constant="-54" id="NSP-2i-AyE"/>
+                <constraint firstAttribute="trailing" secondItem="1Dc-Hf-73s" secondAttribute="trailing" constant="60" id="OKz-Qi-5aF"/>
+                <constraint firstItem="1Dc-Hf-73s" firstAttribute="leading" secondItem="GSP-7f-akB" secondAttribute="trailing" constant="12" id="aRz-Co-zSR"/>
+                <constraint firstAttribute="trailing" secondItem="SGm-0k-paf" secondAttribute="trailing" constant="30" id="d09-0Z-1S3"/>
+                <constraint firstItem="1Dc-Hf-73s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="nTE-CG-kdc"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="支付成功" width="48" height="48"/>
+    </resources>
+</document>

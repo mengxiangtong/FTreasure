@@ -1,0 +1,85 @@
+//
+//  DetailTreasureRecordHeader.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/15.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "DetailTreasureRecordHeader.h"
+
+@implementation ItemHeader
+
++ (id)loadFromXib
+{
+    return [self loadViewFromXibNamed:NSStringFromClass([self class])];
+}
+
++ (id)loadViewFromXibNamed:(NSString *)xibName withFileOwner:(id)fileOwner {
+    NSArray *array = [[NSBundle mainBundle] loadNibNamed:xibName owner:fileOwner options:nil];
+    if (array && [array count]) {
+        return array[0];
+    }else {
+        return nil;
+    }
+}
+
++ (id)loadViewFromXibNamed:(NSString*)xibName {
+    return [self loadViewFromXibNamed:xibName withFileOwner:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
++ (CGFloat)height {
+    return 44.0;
+}
+
+@end
+
+@implementation DetailTreasureRecordHeader
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = UIColorHex(0xECEBE8);
+        _nameLabel = [UILabel new];
+        _nameLabel.origin = CGPointMake(15, 20);
+        _nameLabel.size = CGSizeMake(self.width-15*2, 15);
+        _nameLabel.numberOfLines = 0;
+        _nameLabel.font = SYSTEM_FONT(17);
+        _nameLabel.textColor = UIColorHex(333333);
+        _nameLabel.text = @"iPhone6 4.7英寸 16G 新旧包装随机发放";
+        [self addSubview:_nameLabel];
+        [_nameLabel sizeToFit];
+        
+        _periodLabel = [YYLabel new];
+        _periodLabel.origin = CGPointMake(_nameLabel.left, _nameLabel.bottom+10);
+        _periodLabel.size = CGSizeMake(_nameLabel.width, 14);
+        _periodLabel.font = SYSTEM_FONT(13);
+        _periodLabel.textColor = UIColorHex(666666);
+        _periodLabel.text = @"期号：32423441";
+        [self addSubview:_periodLabel];
+        [_periodLabel sizeToFit];
+        
+        _paticipateLabel = [YYLabel new];
+        _paticipateLabel.backgroundColor = [UIColor whiteColor];
+        _paticipateLabel.origin = CGPointMake(0, _periodLabel.bottom+30);
+        _paticipateLabel.size = CGSizeMake(kScreenWidth, 44);
+        _paticipateLabel.font = SYSTEM_FONT(13);
+        _paticipateLabel.textColor = UIColorHex(666666);
+        _paticipateLabel.textAlignment = NSTextAlignmentCenter;
+        _paticipateLabel.text = @"我已参与3人次，以下是所有夺宝记录";
+        [self addSubview:_paticipateLabel];
+        self.height = _paticipateLabel.bottom+1;
+
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
+@end

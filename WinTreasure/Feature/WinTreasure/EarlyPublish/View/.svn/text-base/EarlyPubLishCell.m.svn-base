@@ -1,0 +1,51 @@
+//
+//  EarlyPubLishCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/14.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "EarlyPubLishCell.h"
+
+@implementation EarlyPubLishCell
+
+- (void)awakeFromNib {
+    _winnerImgView.backgroundColor = UIColorHex(0xeeeeee);
+    _winnerImgView.layer.cornerRadius = _winnerImgView.height / 2.0;
+    _winnerImgView.layer.masksToBounds = YES;
+    _winnerImgView.layer.shouldRasterize = YES;
+    _winnerImgView.layer.rasterizationScale = kScreenScale;
+    
+    _containerView.layer.borderColor = UIColorHex(0xE0E0E0).CGColor;
+    _containerView.layer.borderWidth = CGFloatFromPixel(1);
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"EarlyPubLishCell";
+    EarlyPubLishCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (EarlyPubLishCell *)[[[NSBundle mainBundle] loadNibNamed:@"EarlyPubLishCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (void)setModel:(EarlyPublishModel *)model {
+    _model = model;
+    [_winnerImgView setImageWithURL:[NSURL URLWithString:_model.winnerImgUrl] options:YYWebImageOptionShowNetworkActivity];
+    _periodLabel.text = [NSString stringWithFormat:@"期号：%@,(揭晓时间:%@)",_model.periodNumber,_model.publishTime];
+    _winnerLabel.text = [NSString stringWithFormat:@"获奖者：%@",_model.winner];
+    _ipLabel.text = [NSString stringWithFormat:@"(%@)",_model.userIP];
+    _idLabel.text = [NSString stringWithFormat:@"用户ID：%@(唯一不变标识)",_model.userID];
+    _luckyNoLabel.text = [NSString stringWithFormat:@"幸运号码：%@",_model.luckyNumber];
+    _participateLabel.text = [NSString stringWithFormat:@"本期参与：%@人次",_model.partInAmount];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end

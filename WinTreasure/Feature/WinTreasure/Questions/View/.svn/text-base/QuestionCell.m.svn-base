@@ -1,0 +1,53 @@
+
+//
+//  QuestionCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/13.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "QuestionCell.h"
+#define kAnswerLabelMargin 5.0
+
+@implementation QuestionCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"QuestionCell";
+    QuestionCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if(cell == nil) {
+        cell = [[QuestionCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _answerLabel = [YYLabel new];
+        _answerLabel.origin = CGPointMake(kAnswerLabelMargin, kAnswerLabelMargin);
+        _answerLabel.size = CGSizeMake(kScreenWidth-kAnswerLabelMargin*2, self.height-kAnswerLabelMargin*2);
+        _answerLabel.numberOfLines = 0;
+        _answerLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
+        [self.contentView addSubview:_answerLabel];
+    }
+    return self;
+}
+
+- (void)setAnswer:(NSString *)answer {
+    _answer = answer;
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:_answer attributes:@{NSFontAttributeName:SYSTEM_FONT(12),NSForegroundColorAttributeName:UIColorHex(999999)}];
+    attString.lineSpacing = 1.0;
+    _answerLabel.attributedText = attString;
+    _answerLabel.height = [QuestionCell height:_answer];
+}
+
++ (CGFloat)height:(NSString *)answer {
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:answer attributes:@{NSFontAttributeName:SYSTEM_FONT(12),NSForegroundColorAttributeName:UIColorHex(999999)}];
+    CGSize size = [attString boundingRectWithSize:CGSizeMake(kScreenWidth-kAnswerLabelMargin*2, HUGE) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    return size.height+kAnswerLabelMargin*2;
+}
+
+
+@end

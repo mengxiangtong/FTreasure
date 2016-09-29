@@ -1,0 +1,32 @@
+//
+//  DetailTreasureRecordCell.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/15.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "DetailTreasureRecordModel.h"
+
+typedef void(^DetailTreasureRecordCellBlock)(NSIndexPath *indexpath);
+
+@interface DetailTreasureRecordCell : UITableViewCell
+
+@property (nonatomic, copy) DetailTreasureRecordCellBlock checkNumber;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+@property (nonatomic, strong) DetailTreasureRecordModel *model;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+
+/**参与人次
+ */
+@property (weak, nonatomic) IBOutlet UILabel *participateAmountLabel;
+
+
++ (instancetype)cellWithTableView:(UITableView *)tableview;
+
+@end

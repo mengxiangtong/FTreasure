@@ -1,0 +1,29 @@
+//
+//  PurchaseRecordLayout.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/27.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "PurchaseRecordModel.h"
+
+#define kStatusHeight 40.0 //状态栏高度
+#define kPurchaseRecordMargin 8.0 //上下留白
+
+@interface PurchaseRecordLayout : NSObject
+
+@property (nonatomic, assign) CGFloat marginTop;
+
+@property (nonatomic, assign) CGFloat marginBottom;
+
+@property (nonatomic, assign) CGFloat statusHeight;
+
+@property (nonatomic, strong) PurchaseRecordModel *model;
+
+@property (nonatomic, assign) CGFloat height;
+
+- (instancetype)initWithModel:(PurchaseRecordModel *)model;
+
+@end

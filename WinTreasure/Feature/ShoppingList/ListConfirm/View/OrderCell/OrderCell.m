@@ -1,0 +1,167 @@
+//
+//  OrderCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/20.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "OrderCell.h"
+
+@implementation OrderCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"OrderCell";
+    OrderCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (OrderCell *)[[[NSBundle mainBundle] loadNibNamed:@"OrderCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
++ (CGFloat)height {
+    return 34.0;
+}
+
+@end
+
+@implementation OrderIntroCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"OrderIntroCell";
+    OrderIntroCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[OrderIntroCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = UIColorHex(0xF6F2E3);
+        YYLabel *introLabel = [YYLabel new];
+        introLabel.origin = CGPointMake(30, ([OrderIntroCell height]-14)/2.0);
+        introLabel.size = CGSizeMake(kScreenWidth-30*2, 14);
+        introLabel.font = SYSTEM_FONT(14);
+        introLabel.textColor = UIColorHex(937249);
+        introLabel.text = @"注：请注意如下订单明细";
+        [self.contentView addSubview:introLabel];
+        [self drawLine];
+    }
+    return self;
+}
+
+- (void)drawLine {
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 0, kScreenWidth-15*2, [OrderIntroCell height])];
+    [self.contentView addSubview:imageView];
+    UIGraphicsBeginImageContext(imageView.frame.size);
+    //开始画线
+    [imageView.image drawInRect:CGRectMake(15, 0, imageView.frame.size.width, imageView.frame.size.height)];    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapButt);
+    //设置线条终点形状
+    CGFloat lengths[] = {2,0};
+    CGContextRef line = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(line, UIColorHex(999999).CGColor);
+    CGContextSetLineDash(line, 0, lengths, 1);
+    //画虚线
+    CGContextMoveToPoint(line, 0.0, [OrderIntroCell height]-1);
+    //开始画线
+    CGContextAddLineToPoint(line, kScreenWidth, [OrderIntroCell height]-1);
+    CGContextStrokePath(line);
+    imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+}
+
++ (CGFloat)height {
+    return 30.0;
+}
+
+@end
+
+@interface BonusDisacountCell ()
+
+@property (nonatomic, strong) YYLabel *sumLabel;
+
+@end
+
+@implementation BonusDisacountCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"BonusDisacountCell";
+    BonusDisacountCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[BonusDisacountCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        
+        YYLabel *titleLabel = [YYLabel new];
+        titleLabel.origin = CGPointMake(15, ([BonusDisacountCell height]-18)/2.0);
+        titleLabel.size = CGSizeMake(100, 18);
+        titleLabel.font = SYSTEM_FONT(16);
+        titleLabel.textColor = UIColorHex(666666);
+        titleLabel.text = @"红包折扣";
+        [self.contentView addSubview:titleLabel];
+        [titleLabel sizeToFit];
+        
+        _sumLabel = [YYLabel new];
+        NSString *sum = @"-2.00元";
+        CGSize size = [sum sizeWithAttributes:@{NSFontAttributeName:SYSTEM_FONT(15)}];
+        _sumLabel.origin = CGPointMake(kScreenWidth-15-size.width, ([BonusDisacountCell height]-16)/2.0);
+        _sumLabel.size = CGSizeMake(size.width, 16);
+        _sumLabel.font = SYSTEM_FONT(15);
+        _sumLabel.textColor = kDefaultColor;
+        _sumLabel.text = sum;
+        _sumLabel.textAlignment = NSTextAlignmentRight;
+        [self.contentView addSubview:_sumLabel];
+        [_sumLabel sizeToFit];
+    }
+    return self;
+}
+
++ (CGFloat)height {
+    return 44.0;
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+//
+//  PhoneModifyViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/22.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "PhoneModifyViewController.h"
+#import "VerifyButton.h"
+
+@interface PhoneModifyViewController ()
+
+@property (weak, nonatomic) IBOutlet VerifyButton *codeButton;
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneField;
+
+@property (weak, nonatomic) IBOutlet UITextField *codeField;
+
+@end
+
+@implementation PhoneModifyViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"修改手机号码";
+    self.view.backgroundColor = UIColorHex(0xe5e5e5);
+    [self setRightItemTitle:@"确定" action:@selector(confirm)];
+    [_phoneField becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [_codeButton stoptimer];
+}
+
+- (void)confirm {
+    if (![WTSystemInfo validateMobile:_phoneField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入手机号码"];
+        return;
+    }
+    if (![WTSystemInfo validateVerifyCode:_codeField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        return;
+    }
+    if (_modifyBlock) {
+        _modifyBlock(_phoneField.text);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)getVerifyCode  {
+    [_codeButton beginTimer];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+@end

@@ -1,0 +1,43 @@
+10
+
+dir
+59
+http://liht@192.168.6.7:8443/svn/IMyBest_Shopping/branches/IMyBest_WinTreasureApp-alpha_0.01.001/WinTreasure/WinTreasure/Feature/Me/TopupRecord
+http://liht@192.168.6.7:8443/svn/IMyBest_Shopping
+
+
+
+2016-07-19T07:04:03.563875Z
+59
+liht
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b0ee9f78-3d31-be4f-b21b-c15cee1859db
+
+Model
+dir
+
+Controller
+dir
+
+TopupResult
+dir
+
+Topup
+dir
+
+View
+dir
+

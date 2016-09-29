@@ -1,0 +1,39 @@
+//
+//  ProductDetailCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/7/4.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "ProductDetailCell.h"
+
+@implementation ProductDetailCell
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"ProductDetailCell";
+    ProductDetailCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (ProductDetailCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductDetailCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void)setLayout:(ProductDetailLayout *)layout {
+    _layout = layout;
+
+}
+
+@end

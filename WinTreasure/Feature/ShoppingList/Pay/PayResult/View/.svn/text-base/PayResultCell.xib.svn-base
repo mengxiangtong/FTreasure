@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="KGk-i7-Jjw" customClass="PayResultCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="产品名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JP-s9-GHe">
+                        <rect key="frame" x="15" y="15" width="241" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1人次" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNC-N5-uhZ">
+                        <rect key="frame" x="270" y="15" width="35" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品期号：302532532" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWg-Af-llI">
+                        <rect key="frame" x="15" y="41" width="290" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="夺宝号码：10003324" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHY-8Q-xEM">
+                        <rect key="frame" x="15" y="66" width="290" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5JP-s9-GHe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="95k-Qc-Jom"/>
+                    <constraint firstItem="5JP-s9-GHe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="H1f-yt-Tf2"/>
+                    <constraint firstItem="uNC-N5-uhZ" firstAttribute="leading" secondItem="5JP-s9-GHe" secondAttribute="trailing" constant="14" id="Kn9-ee-eD5"/>
+                    <constraint firstAttribute="bottom" secondItem="zHY-8Q-xEM" secondAttribute="bottom" constant="12" id="Ncg-m8-24B"/>
+                    <constraint firstItem="cWg-Af-llI" firstAttribute="top" secondItem="5JP-s9-GHe" secondAttribute="bottom" constant="8" id="QHA-dA-wNf"/>
+                    <constraint firstItem="cWg-Af-llI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Vmu-an-yCu"/>
+                    <constraint firstItem="zHY-8Q-xEM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gRI-Gy-hW3"/>
+                    <constraint firstAttribute="trailing" secondItem="uNC-N5-uhZ" secondAttribute="trailing" constant="15" id="ijk-tG-tCr"/>
+                    <constraint firstAttribute="trailing" secondItem="cWg-Af-llI" secondAttribute="trailing" constant="15" id="ipe-1j-8Cx"/>
+                    <constraint firstItem="uNC-N5-uhZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="lwB-z2-GQH"/>
+                    <constraint firstAttribute="trailing" secondItem="zHY-8Q-xEM" secondAttribute="trailing" constant="15" id="wfb-dc-d1Y"/>
+                    <constraint firstItem="zHY-8Q-xEM" firstAttribute="top" secondItem="cWg-Af-llI" secondAttribute="bottom" constant="8" id="yHI-yL-ySb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="5JP-s9-GHe" id="k0Q-v7-6nr"/>
+                <outlet property="paticipateLabel" destination="uNC-N5-uhZ" id="QzE-UX-emE"/>
+                <outlet property="periodLabel" destination="cWg-Af-llI" id="PTl-lu-MCa"/>
+                <outlet property="treasureNoLabel" destination="zHY-8Q-xEM" id="VAu-iW-gbA"/>
+            </connections>
+            <point key="canvasLocation" x="507" y="430"/>
+        </tableViewCell>
+    </objects>
+</document>

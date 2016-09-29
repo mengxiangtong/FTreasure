@@ -1,0 +1,38 @@
+//
+//  CityModel.m
+//  iLight
+//
+//  Created by Apple on 15/5/22.
+//  Copyright (c) 2015年 i-mybest. All rights reserved.
+//
+
+#import "CityModel.h"
+#import "DistrictModel.h"
+
+@implementation CityModel
+
+- (id)initWithDictionary:(NSDictionary *)dic {
+    self = [super init];
+    if (self) {
+        self.CityCode = [dic objectForKey:@"CityCode"];
+        self.CityPinyin = [dic objectForKey:@"CityPinyin"];
+        self.CityId = [dic objectForKey:@"CityId"];
+        self.CityName = [dic objectForKey:@"CityName"];
+        NSArray *districtArr = (NSArray *)[dic objectForKey:@"DistrictList"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [districtArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                DistrictModel *model = [[DistrictModel alloc]initWithDictionary:obj];
+                [self.districArray addObject:model];
+            }];
+        });
+    }
+    return self;
+}
+
+- (NSMutableArray *)districArray {
+    if (!_districArray) {
+        _districArray = [NSMutableArray array];
+    }
+    return _districArray;
+}
+@end

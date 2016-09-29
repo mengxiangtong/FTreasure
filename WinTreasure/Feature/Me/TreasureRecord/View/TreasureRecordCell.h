@@ -1,0 +1,105 @@
+//
+//  TreasureRecordCell.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/2.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "TreasureRecordLayout.h"
+#import "TSProgressView.h"
+
+@class TreasureRecordCell;
+
+typedef NS_ENUM(NSUInteger, DescriptionViewType) {
+    DescriptionViewTypeUnPublished = 0, //未揭晓
+    DescriptionViewTypePublished, //已揭晓
+    DescriptionViewTypeNotFull,  //人数未满
+};
+
+@interface ProductView : UIView
+
+/**产品图片
+ */
+@property (nonatomic, strong) UIImageView *productImgView;
+
+/**产品期号
+ */
+@property (nonatomic, strong) YYLabel *periodNoLabel;
+
+/**产品名
+ */
+@property (nonatomic, strong) YYLabel *productNameLabel;
+
+/**参与人次
+ */
+@property (nonatomic, strong) YYLabel *participateLabel;
+
+/**参与详情
+ */
+@property (nonatomic, strong) UIButton *detailButton;
+
+@property (nonatomic, strong) TreasureRecordCell *cell;
+
+- (void)setLayout:(TreasureRecordLayout *)layout;
+
+@end
+
+@interface DescriptionView : UIView
+
+@property (nonatomic, assign) DescriptionViewType type;
+
+@property (nonatomic, strong) YYLabel *totalLabel;
+
+@property (nonatomic, strong) YYLabel *leftLabel;
+
+@property (nonatomic, strong) YYLabel *winnerLabel;
+
+@property (nonatomic, strong) TSProgressView *progressView;
+
+@property (nonatomic, strong) UIButton *buyButton;
+
+@property (nonatomic, strong) UIImageView *timeImageView;
+
+@property (nonatomic, strong) TreasureRecordCell *cell;
+
+@property (nonatomic, strong) TreasureRecordLayout *layout;
+
+@end
+
+@interface ContainerView : UIView
+
+@property (nonatomic, assign) DescriptionViewType type;
+
+@property (nonatomic, strong) DescriptionView *descriptionView;
+
+@property (nonatomic, strong) ProductView *productView;
+
+@property (nonatomic, weak) TreasureRecordCell *cell;
+
+@property (nonatomic, strong) TreasureRecordLayout *layout;
+
+
+@end
+
+typedef void(^TreasureRecordCellDetailBlock)(NSIndexPath *indexpath);
+typedef void(^TreasureRecordCellPurchaseBlock)(NSIndexPath *indexpath);
+
+@interface TreasureRecordCell : UITableViewCell
+
+@property (nonatomic, strong) ContainerView *containerView;
+
+@property (nonatomic, copy) TreasureRecordCellDetailBlock checkDetails;
+
+@property (nonatomic, copy) TreasureRecordCellPurchaseBlock purchaseBlock;
+
+@property (nonatomic, copy) NSIndexPath *indexPath;
+
+@property (nonatomic, strong) TreasureRecordModel *model;
+
+- (void)setLayout:(TreasureRecordLayout *)layout;
+
++ (instancetype)cellWithTableView:(UITableView *)tableview;
+
+@end

@@ -1,0 +1,32 @@
+//
+//  DiscoveryCell.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/1.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "DiscoveryModel.h"
+
+@interface DiscoveryCell : UITableViewCell
+
+@property (nonatomic, strong) UIImageView *discoveryImgView;
+
+/**箭头
+ */
+@property (nonatomic, strong) UIImageView *arrowImgView;
+
+/**大标题
+ */
+@property (nonatomic, strong) YYLabel *titleLabel;
+
+/**小标题
+ */
+@property (nonatomic, strong) YYLabel *descriptLabel;
+
+@property (nonatomic, strong) DiscoveryModel *model;
+
++ (instancetype)cellWithTableView:(UITableView *)tableview;
+
+@end

@@ -1,0 +1,25 @@
+//
+//  TSAssetController.h
+//  TSAssetPickerController
+//
+//  Created by linitial on 15-3-2.
+//  Copyright (c) 2015年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "TSAssetGroupController.h"
+
+@interface TSAssetController : BaseViewController
+ 
+@property (weak, nonatomic) IBOutlet UIButton *previewButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (nonatomic) NSMutableArray *assets;
+@property (nonatomic) TSAssetGroupController *assetGroupController;
+@property (nonatomic) ALAssetsGroup *assetsGroup;
+@property (weak, nonatomic) IBOutlet UILabel *selectedNoLabel;
+@property (nonatomic, assign) NSInteger maximumNumberOfSelection;
+
+- (IBAction)perviewAction:(id)sender;
+- (IBAction)sendAction:(id)sender;
+@end

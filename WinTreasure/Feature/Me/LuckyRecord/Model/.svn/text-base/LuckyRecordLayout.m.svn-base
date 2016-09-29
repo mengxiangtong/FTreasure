@@ -1,0 +1,159 @@
+//
+//  LuckyRecordLayout.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/27.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "LuckyRecordLayout.h"
+
+@implementation LuckyRecordLayout
+
+- (instancetype)initWithModel:(LuckyRecordModel *)model {
+    if (!model) {
+        return nil;
+    }
+    self = [super init];
+    if (self) {
+        _model = model;
+        [self layout];
+    }
+    return self;
+}
+
+- (void)layout {
+    _marginTop = kLuckyRecordMargin;
+    _nameHeight = 0;
+    _periodHeight = 0;
+    _amountHeight = 0;
+    _luckyNumberHeight = 0;
+    _partInHeight = 0;
+    _timeHeight = 0;
+    _prizeViewHeight = kLuckyRecordPrizeViewHeight;
+    _marginBottom = kLuckyRecordPaddingRight;
+    _height = 0;
+    [self _initNameHeight];
+    [self _initPeriodHeight];
+    [self _initAmountHeight];
+    [self _initLuckyNumberHeight];
+    [self _initPartInHeight];
+    [self _initTimeHeight];
+    _height += _marginTop;
+    _height += _nameHeight+kLuckyRecordMargin;
+    _height += _periodHeight+kLuckyRecordPaddingRight;
+    _height += _amountHeight+kLuckyRecordPaddingRight;
+    _height += _luckyNumberHeight+kLuckyRecordPaddingRight;
+    _height += _partInHeight+kLuckyRecordPaddingRight;
+    _height += _timeHeight+kLuckyRecordMargin;
+    _height += _prizeViewHeight;
+    _height += _marginBottom;
+}
+
+- (void)_initNameHeight {
+    _nameHeight = 0;
+    _nameLayout = nil;
+    NSMutableAttributedString *attrName = [[NSMutableAttributedString alloc]initWithString:_model.productName];
+    if (attrName.length==0) {
+        return;
+    }
+    attrName.lineBreakMode = NSLineBreakByCharWrapping;
+    attrName.font = SYSTEM_FONT(15);
+    attrName.color = UIColorHex(333333);
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+//    container.maximumNumberOfRows = 0;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _nameLayout = [YYTextLayout layoutWithContainer:container text:attrName];
+    if (!_nameLayout) {
+        return;
+    }
+    _nameHeight = 16*_nameLayout.rowCount;
+}
+
+- (void)_initPeriodHeight {
+    _periodHeight = 0;
+    _periodLayout = nil;
+    NSMutableAttributedString *attributePeriod = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"期号：%@",_model.productPeriodNo]];
+    if (attributePeriod.length==0) {
+        return;
+    }
+    attributePeriod.lineBreakMode = NSLineBreakByTruncatingTail;
+    attributePeriod.font = SYSTEM_FONT(14);
+    attributePeriod.color = UIColorHex(999999);
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+    container.maximumNumberOfRows = 1;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _periodLayout = [YYTextLayout layoutWithContainer:container text:attributePeriod];
+    _periodHeight = 16.0;
+}
+
+- (void)_initAmountHeight {
+    _amountHeight = 0;
+    _amountLayout = nil;
+    NSMutableAttributedString *attributeAmount = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"总需：%@人次",_model.productNeedAmount]];
+    if (attributeAmount.length==0) {
+        return;
+    }
+    attributeAmount.lineBreakMode = NSLineBreakByTruncatingTail;
+    attributeAmount.font = SYSTEM_FONT(14);
+    attributeAmount.color = UIColorHex(999999);
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+    container.maximumNumberOfRows = 1;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _amountLayout = [YYTextLayout layoutWithContainer:container text:attributeAmount];
+    _amountHeight = 16.0;
+}
+
+- (void)_initLuckyNumberHeight {
+    _luckyNumberHeight = 0;
+    _luckyNumberLayout = nil;
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"幸运号码：%@",_model.productLuckyNo]];
+    if (attrStr.length==0) {
+        return;
+    }
+    attrStr.lineBreakMode = NSLineBreakByTruncatingTail;
+    attrStr.font = SYSTEM_FONT(14);
+    attrStr.color = UIColorHex(999999);
+    [attrStr addAttributes:@{NSForegroundColorAttributeName:kDefaultColor} range:NSMakeRange(4, _model.productLuckyNo.length)];
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+    container.maximumNumberOfRows = 1;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _luckyNumberLayout = [YYTextLayout layoutWithContainer:container text:attrStr];
+    _luckyNumberHeight = 16.0;
+}
+
+- (void)_initPartInHeight {
+    _partInHeight = 0;
+    _partInLayout = nil;
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"本期参与：%@人次",_model.productPartInAmount]];
+    if (attrStr.length==0) {
+        return;
+    }
+    attrStr.lineBreakMode = NSLineBreakByTruncatingTail;
+    attrStr.font = SYSTEM_FONT(14);
+    attrStr.color = UIColorHex(999999);
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+    container.maximumNumberOfRows = 1;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _partInLayout = [YYTextLayout layoutWithContainer:container text:attrStr];
+    _partInHeight = 16.0;
+}
+
+- (void)_initTimeHeight {
+    _timeHeight = 0;
+    _timeLayout = nil;
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"揭晓时间：%@",_model.productPublishTime]];
+    if (attrStr.length==0) {
+        return;
+    }
+    attrStr.lineBreakMode = NSLineBreakByTruncatingTail;
+    attrStr.font = SYSTEM_FONT(14);
+    attrStr.color = UIColorHex(999999);
+    YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(kLuckyRecordNameWidth, 16)];
+    container.maximumNumberOfRows = 1;
+    container.size = CGSizeMake(kLuckyRecordNameWidth, HUGE);
+    _timeLayout = [YYTextLayout layoutWithContainer:container text:attrStr];
+    _timeHeight = 16.0;
+}
+
+@end

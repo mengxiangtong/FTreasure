@@ -1,0 +1,41 @@
+//
+//  AdvertiseViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/13.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "AdvertiseViewController.h"
+
+@interface AdvertiseViewController ()
+
+@property (nonatomic, strong) UIWebView *webView;
+
+@end
+
+@implementation AdvertiseViewController
+- (UIWebView *)webView {
+    if (!_webView) {
+        _webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://1.163.com/hd/oneact/hdframe.do?id=70"]]];
+    }
+    return _webView;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"魔兽世界";
+    [self.view addSubview:self.webView];
+}
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+@end

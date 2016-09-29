@@ -1,0 +1,54 @@
+//
+//  TreasureRecordLayout.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/2.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TreasureRecordModel.h"
+#define kProductViewHeight 105.0
+#define kProductImgViewPadding 15.0
+#define kProductImgViewWidth 90.0
+#define kProductNameLabelPadding 8.0 //名称 左侧留白 （顶端留白）
+#define kDetailButtonWidth 80.0
+#define kDescriptionViewHeight 50.0
+#define kDescriptionBuyButtonHeight 26.0
+#define kDescriptionBuyButtonWidth 60.0
+#define kProductNameLabelWidth  kScreenWidth-kProductImgViewWidth-kProductImgViewPadding-kProductNameLabelPadding*2 //名称最大宽度
+#define kParticipateLabelWidth  kScreenWidth-kProductImgViewWidth-kProductImgViewPadding-kProductNameLabelPadding*3-kDetailButtonWidth //参与Label最大宽度
+
+
+@interface TreasureRecordLayout : NSObject
+
+@property (nonatomic, strong) TreasureRecordModel *model;
+
+@property (nonatomic, assign) CGFloat marginTop;
+
+@property (nonatomic, assign) CGFloat nameHeight;
+
+@property (nonatomic, strong) YYTextLayout *nameLayout;
+
+@property (nonatomic, assign) CGFloat periodNumberHeight;
+
+@property (nonatomic, strong) YYTextLayout *periodNumberLayout;
+
+@property (nonatomic, assign) CGFloat participateHeight;
+
+@property (nonatomic, strong) YYTextLayout *participateLayout;
+
+@property (nonatomic, assign) CGFloat imgHeight;
+
+@property (nonatomic, assign) CGFloat descriptionHeight;
+
+@property (nonatomic, assign) CGFloat productViewHeight;
+
+@property (nonatomic, assign) CGFloat containerHeight;
+
+// 总高度
+@property (nonatomic, assign) CGFloat height;
+
+- (instancetype)initWithModel:(TreasureRecordModel *)model;
+
+@end

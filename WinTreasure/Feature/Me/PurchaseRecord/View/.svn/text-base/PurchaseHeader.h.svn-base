@@ -1,0 +1,29 @@
+//
+//  PurchaseHeader.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/27.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+extern CGFloat kTSMenuLineHeight;
+extern CGFloat kAnimationDuration;
+
+@interface PurchaseHeader : UIView
+
++ (PurchaseHeader *)puchaseHeader;
+
+
+
+@end
+
+
+@interface PurchaseHeaderButton : UIButton
+
+- (void)setImage:(UIImage *)image
+           title:(NSString *)title
+        forState:(UIControlState)state;
+
+@end

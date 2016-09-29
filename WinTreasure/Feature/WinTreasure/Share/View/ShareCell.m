@@ -1,0 +1,259 @@
+//
+//  ShareCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/8.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "ShareCell.h"
+#import "YYControl.h"
+
+@implementation ShareCell
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"ShareCellIdentifier";
+    ShareCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[ShareCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self.exclusiveTouch = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (self) {
+        _shareView = [[ShareView alloc]initWithFrame:self.bounds];;
+        _shareView.cell = self;
+        [self.contentView addSubview:_shareView];
+    }
+    return self;
+}
+
+- (void)setLayout:(ShareLayout *)layout {
+    self.height = layout.height;
+    self.contentView.height = layout.height;
+    _shareView.layout = layout;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
+
+@end
+
+@implementation ShareView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.exclusiveTouch = YES;
+        _containerView = [UIView new];
+        _containerView.width = kScreenWidth;
+        _containerView.height = 1;
+        _containerView.backgroundColor = [UIColor whiteColor];
+        _containerView.userInteractionEnabled = YES;
+        [self addSubview:_containerView];
+        
+        _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _headButton.origin = CGPointMake(kHeadImageViewMargin, kHeadImageViewMargin);
+        _headButton.size = CGSizeMake(kHeadImageViewWidth, kHeadImageViewWidth);
+        _headButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _headButton.clipsToBounds = YES;
+        [_headButton addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+        [_containerView addSubview:_headButton];
+        
+        _headButton.layer.masksToBounds = YES;
+        _headButton.layer.cornerRadius = _headButton.height / 2;
+        _headButton.layer.shouldRasterize = YES;
+        _headButton.layer.rasterizationScale = kScreenScale;
+        
+        _timeLabel = [YYLabel new];
+        _timeLabel.displaysAsynchronously = YES;
+        _timeLabel.ignoreCommonProperties = YES;
+        _timeLabel.size = CGSizeMake(kTimeLabelWidth, 15);
+        _timeLabel.origin = CGPointMake(kScreenWidth-kTimeLabelWidth-kTimeLabelRightMargin, kUserNameLabelTopMargin);
+        _timeLabel.font = SYSTEM_FONT(13);
+        _timeLabel.textColor = UIColorHex(666666);
+        [_containerView addSubview:_timeLabel];
+
+        _usernameLabel = [YYLabel new];
+        _usernameLabel.textColor = kDefaultColor;
+        _usernameLabel.font = SYSTEM_FONT(14);
+        _usernameLabel.displaysAsynchronously = YES;
+        _usernameLabel.ignoreCommonProperties = YES;
+        _usernameLabel.origin = CGPointMake(_headButton.right+kHeadImageViewMargin*2, kUserNameLabelTopMargin);
+        _usernameLabel.size = CGSizeMake(kScreenWidth-(_headButton.right+kHeadImageViewMargin*2)-(kTimeLabelWidth+kTimeLabelRightMargin), 15);
+        _usernameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [_containerView addSubview:_usernameLabel];
+
+//        _backImageView = [UIImageView new];
+//        _backImageView.backgroundColor = [UIColorHex(999999) colorWithAlphaComponent:0.6];
+//        [_containerView addSubview:_backImageView];
+        
+        _headLabel = [YYLabel new];
+        _headLabel.origin = CGPointMake(_headButton.right+kHeadLabelLeftMargin, _timeLabel.bottom+kUserNameLabelTopMargin);
+        _headLabel.size = CGSizeMake(kScreenWidth-(_headButton.right+kHeadLabelLeftMargin)-kTimeLabelRightMargin, 16);
+        _headLabel.textColor = [UIColor blackColor];
+        _headLabel.font = SYSTEM_FONT(16);
+        _headLabel.displaysAsynchronously = YES;
+        _headLabel.ignoreCommonProperties = YES;
+        _headLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [_containerView addSubview:_headLabel];
+        _headLabel.userInteractionEnabled = YES;
+        _headLabel.textTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+            NSLog(@"tap");
+        };
+        _productNameLabel = [YYLabel new];
+        _productNameLabel.font = SYSTEM_FONT(14);
+        _productNameLabel.displaysAsynchronously = YES;
+        _productNameLabel.ignoreCommonProperties = YES;
+        _productNameLabel.origin = CGPointMake(_headLabel.left, 16);
+        _productNameLabel.size = CGSizeMake(_headLabel.width, 16);
+        _productNameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [_containerView addSubview:_productNameLabel];
+        
+        _periodLabel = [YYLabel new];
+        _periodLabel.font = SYSTEM_FONT(14);
+        _periodLabel.displaysAsynchronously = YES;
+        _periodLabel.ignoreCommonProperties = YES;
+        _periodLabel.origin = CGPointMake(_headLabel.left, 16);
+        _periodLabel.size = CGSizeMake(_headLabel.width, 16);
+        _periodLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [_containerView addSubview:_periodLabel];
+        
+        _contentLabel = [YYLabel new];
+        _contentLabel.font = SYSTEM_FONT(14);
+        _contentLabel.displaysAsynchronously = YES;
+        _contentLabel.ignoreCommonProperties = YES;
+        _contentLabel.origin = CGPointMake(_headLabel.left, 16);
+        _contentLabel.size = CGSizeMake(_headLabel.width, 18);
+        _contentLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
+        [_containerView addSubview:_contentLabel];
+        
+        NSMutableArray *picViews = [NSMutableArray new];
+        for (int i = 0; i < 9; i++) {
+            YYControl *imageView = [YYControl new];
+            imageView.backgroundColor = UIColorHex(0xe5e5e5);
+            imageView.size = CGSizeMake(kContentImageWidth, kContentImageWidth);
+            imageView.hidden = YES;
+            imageView.clipsToBounds = YES;
+            imageView.exclusiveTouch = YES;
+            [picViews addObject:imageView];
+            [self addSubview:imageView];
+        }
+        _picViews = picViews;
+    }
+    return self;
+}
+
+- (void)setLayout:(ShareLayout *)layout {
+    _layout = layout;
+    _containerView.top = layout.marginTop;
+    _containerView.height = layout.height;
+    self.height = layout.height;
+    CGFloat top = 0.0;
+    if (layout.profileHeight>0) {
+        top += layout.profileHeight;
+    }
+    [_headButton setImageWithURL:[NSURL URLWithString:_layout.model.headImageUrl] forState:UIControlStateNormal options:YYWebImageOptionProgressiveBlur];
+    _usernameLabel.textLayout = layout.nameTextLayout;
+    _timeLabel.textLayout = layout.timeTextLayout;
+    
+    _headLabel.textLayout = layout.titleTextLayout;
+    _headLabel.top = top;
+    
+    top += kContentViewMargin + _layout.titleHeight;
+    _productNameLabel.textLayout = layout.productNameTextLayout;
+    _productNameLabel.top = top;
+    
+    top += kContentViewMargin + _layout.productNameHeight;
+    _periodLabel.textLayout = layout.periodTextLayout;
+    _periodLabel.top = top;
+
+    top += kContentViewMargin + _layout.periodHeight;
+    _contentLabel.textLayout = layout.contentTextLayout;
+    _contentLabel.top = top;
+    _contentLabel.height = _layout.contentHeight;
+
+    top += kContentViewMargin + layout.contentHeight;
+
+    if (layout.picHeight == 0) {
+        [self _hideImageViews];
+    }
+    if (layout.picHeight > 0) {
+        [self _setImageViewWithTop:top];
+    }
+    
+}
+
+- (void)_setImageViewWithTop:(CGFloat)imageTop {
+    CGSize picSize = _layout.picSize;
+    NSArray *pics = _layout.model.imageList;
+    int picsCount = (int)pics.count;
+    
+    for (int i = 0; i < 9; i++) {
+        UIView *imageView = _picViews[i];
+        if (i >= picsCount) {
+            [imageView.layer cancelCurrentImageRequest];
+            imageView.hidden = YES;
+        } else {
+            CGPoint origin = {0};
+            switch (picsCount) {
+                case 1: {
+                    origin.x = (kHeadLabelLeftMargin+kHeadImageViewMargin+kHeadImageViewWidth);
+                    origin.y = imageTop;
+                } break;
+                default: {
+                    origin.x = (kHeadLabelLeftMargin+kHeadImageViewMargin+kHeadImageViewWidth) + (i % 3) * (picSize.width + kContentImagePadding);
+                    origin.y = imageTop + (int)(i / 3) * (picSize.height + kContentImagePadding);
+                } break;
+            }
+            imageView.frame = (CGRect){.origin = origin, .size = picSize};
+            imageView.hidden = NO;
+            [imageView.layer removeAnimationForKey:@"contents"];
+            
+            @weakify(imageView);
+            [imageView.layer setImageWithURL:[NSURL URLWithString:pics[i]]
+                                 placeholder:nil
+                                     options:YYWebImageOptionAvoidSetImage
+                                  completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error)
+             {
+                 @strongify(imageView);
+                 if (!imageView) return;
+                 if (image && stage == YYWebImageStageFinished) {
+                     imageView.contentMode = UIViewContentModeScaleAspectFill;
+                     imageView.layer.contentsRect = CGRectMake(0, 0, 1, 1);
+
+                     ((YYControl *)imageView).image = image;
+                     if (from != YYWebImageFromMemoryCacheFast) {
+                         CATransition *transition = [CATransition animation];
+                         transition.duration = 0.15;
+                         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+                         transition.type = kCATransitionFade;
+                         [imageView.layer addAnimation:transition forKey:@"contents"];
+                     }
+                 }
+             }];
+        }
+    }
+}
+
+- (void)click {
+    @weakify(self);
+    ShareCell *cell = weak_self.cell;
+    if (cell.clickHeadImage) {
+        cell.clickHeadImage(cell.indexpath);
+    }
+
+}
+
+- (void)_hideImageViews {
+    for (UIImageView *imageView in _picViews) {
+        imageView.hidden = YES;
+    }
+}
+
+@end

@@ -1,0 +1,86 @@
+10
+
+dir
+59
+http://liht@192.168.6.7:8443/svn/IMyBest_Shopping/branches/IMyBest_WinTreasureApp-alpha_0.01.001/WinTreasure/WinTreasure/Resources
+http://liht@192.168.6.7:8443/svn/IMyBest_Shopping
+
+
+
+2016-07-19T07:04:03.563875Z
+59
+liht
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b0ee9f78-3d31-be4f-b21b-c15cee1859db
+
+Root.xcassets
+dir
+
+ShoppingList.xcassets
+dir
+
+Discovery.xcassets
+dir
+
+Treasure.plist
+file
+
+
+
+
+2016-07-11T03:09:40.000000Z
+9ab02e5eaac11f77d15d10f3ab87cbaf
+2016-07-12T09:03:43.706875Z
+57
+liht
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+495
+
+Treasure.xcassets
+dir
+
+LoginRegister.xcassets
+dir
+
+ProductCategory.xcassets
+dir
+
+Me.xcassets
+dir
+
+Assets.xcassets
+dir
+

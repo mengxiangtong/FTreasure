@@ -1,0 +1,19 @@
+//
+//  BonusHeader.h
+//  WinTreasure
+//
+//  Created by Apple on 16/7/4.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef void(^DiamondHeaderBlock)(void);
+
+@interface DiamondHeader : UIView
+
+@property (nonatomic, copy) NSNumber *diamondSum;
+
+@property (nonatomic, copy) DiamondHeaderBlock ruleBlock;
+
+@end

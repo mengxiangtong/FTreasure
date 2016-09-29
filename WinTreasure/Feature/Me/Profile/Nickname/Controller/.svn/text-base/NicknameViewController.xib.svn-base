@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NicknameViewController">
+            <connections>
+                <outlet property="nameField" destination="Qar-Qq-EMm" id="WUG-9B-m9T"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7U-Aq-0KU">
+                    <rect key="frame" x="0.0" y="79" width="600" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qar-Qq-EMm">
+                            <rect key="frame" x="8" y="0.0" width="584" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="BL4-yO-HDy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Qar-Qq-EMm" secondAttribute="trailing" constant="8" id="9z8-CH-g1R"/>
+                        <constraint firstItem="Qar-Qq-EMm" firstAttribute="centerY" secondItem="L7U-Aq-0KU" secondAttribute="centerY" id="QnA-Ca-CbV"/>
+                        <constraint firstAttribute="height" constant="30" id="cgq-gS-v3X"/>
+                        <constraint firstItem="Qar-Qq-EMm" firstAttribute="leading" secondItem="L7U-Aq-0KU" secondAttribute="leading" constant="8" id="pKQ-Yp-Ex3"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4~20个字符，可有中英文、数字、“_”、“-”组成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQP-PV-xzP">
+                    <rect key="frame" x="8" y="119" width="584" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="zQP-PV-xzP" firstAttribute="top" secondItem="L7U-Aq-0KU" secondAttribute="bottom" constant="10" id="9gZ-54-UrV"/>
+                <constraint firstItem="L7U-Aq-0KU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="79" id="Azg-xB-KD6"/>
+                <constraint firstItem="zQP-PV-xzP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Rsi-If-4k1"/>
+                <constraint firstAttribute="trailing" secondItem="zQP-PV-xzP" secondAttribute="trailing" constant="8" id="ZNt-Vl-AWo"/>
+                <constraint firstItem="L7U-Aq-0KU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rul-Hr-7yr"/>
+                <constraint firstAttribute="trailing" secondItem="L7U-Aq-0KU" secondAttribute="trailing" id="zqr-b3-GIN"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

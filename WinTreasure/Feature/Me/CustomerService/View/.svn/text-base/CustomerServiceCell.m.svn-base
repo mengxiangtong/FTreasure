@@ -1,0 +1,79 @@
+//
+//  CustomerServiceCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/7/6.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "CustomerServiceCell.h"
+
+@interface CustomerServiceCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
+
+@end
+
+@implementation CustomerServiceCell
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"CustomerServiceCell";
+    CustomerServiceCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (CustomerServiceCell *)[[[NSBundle mainBundle] loadNibNamed:@"CustomerServiceCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (void)setModel:(CustomerServiceModel *)model {
+    _model = model;
+    _questionLabel.text = _model.question;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
+
+@implementation ServiceCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"ServiceCell";
+    ServiceCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if(cell == nil) {
+        cell = [[ServiceCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    for (UIView *view in self.subviews) {
+        if([view isKindOfClass:[UIScrollView class]]) {
+            ((UIScrollView *)view).delaysContentTouches = NO;
+            // Remove touch delay for iOS 7
+            break;
+        }
+    }
+    self.exclusiveTouch = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.textLabel.font = SYSTEM_FONT(17);
+    self.textLabel.textColor = UIColorHex(333333);
+    self.textLabel.text = @"自助服务";
+    return self;
+    
+}
+
+
+@end

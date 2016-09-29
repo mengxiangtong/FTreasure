@@ -1,0 +1,20 @@
+//
+//  PurchaseRecordCell.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/27.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "PurchaseRecordLayout.h"
+
+
+@interface PurchaseRecordCell : UITableViewCell
+
+- (void)setLayOut:(PurchaseRecordLayout *)layOut;
+
++ (instancetype)cellWithTableView:(UITableView *)tableview;
+
+@end
+

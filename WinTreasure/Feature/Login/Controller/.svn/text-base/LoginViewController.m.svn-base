@@ -1,0 +1,89 @@
+//
+//  LoginViewController.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/22.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
+#import "WTTabBarController.h"
+
+@interface LoginViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *passwordView;
+@property (weak, nonatomic) IBOutlet UIView *phoneView;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *pswTextField;
+
+@end
+
+@implementation LoginViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"登录";
+    [self setLeftItemTitle:@"取消" action:@selector(dismiss)];
+    [self setup];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_phoneTextField becomeFirstResponder];
+}
+
+- (void)setup {
+    _passwordView.layer.borderWidth = CGFloatFromPixel(1.0);
+    _passwordView.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+    _phoneView.layer.borderWidth = CGFloatFromPixel(1.0);
+    _phoneView.layer.borderColor = UIColorHex(0xeeeeee).CGColor;
+}
+
+- (void)dismiss {
+    [_phoneTextField resignFirstResponder];
+    [_pswTextField resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)login {
+    [_phoneTextField resignFirstResponder];
+    [_pswTextField resignFirstResponder];
+    if (![WTSystemInfo validateMobile:_phoneTextField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        return;
+    }
+    if (![WTSystemInfo validatePassword:_pswTextField.text]) {
+        [SVProgressHUD showInfoWithStatus:@"密码格式不对"];
+        return;
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kTreasureIsLogined];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self dismissViewControllerAnimated:YES completion:^{
+        WTTabBarController *tabBarVC = (WTTabBarController *)[AppDelegate getAppDelegate].window.rootViewController ;
+        tabBarVC.selectedIndex = 4;
+    }];
+}
+
+- (IBAction)goRegister {
+    [_phoneTextField resignFirstResponder];
+    [_pswTextField resignFirstResponder];
+    [self setBackItem];
+    RegisterViewController *vc = [[RegisterViewController alloc]init];
+    [self hideBottomBarPush:vc];
+}
+
+- (IBAction)forgetPassword {
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    NSLog(@"%s",__func__);
+}
+
+@end

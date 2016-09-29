@@ -1,0 +1,72 @@
+//
+//  SearchCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/24.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import "SearchCell.h"
+
+@implementation SearchCell
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+
+    // Initialization code
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"SearchCell";
+    SearchCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (SearchCell *)[[[NSBundle mainBundle] loadNibNamed:@"SearchCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (IBAction)clearData {
+    if (_clearBlock) {
+        _clearBlock();
+    }
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
+
+@implementation SearchResultCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"SearchResultCell";
+    SearchResultCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[SearchResultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _nameLabel = [YYLabel new];
+        _nameLabel.origin = CGPointMake(15, (self.height-16)/2.0);
+        _nameLabel.size = CGSizeMake(kScreenWidth-15*2, 16);
+        _nameLabel.font = SYSTEM_FONT(14);
+        _nameLabel.textColor = UIColorHex(666666);
+        [self.contentView addSubview:_nameLabel];
+    }
+    return self;
+}
+
+- (void)setModel:(SearchModel *)model {
+    _model = model;
+    _nameLabel.text = model.productName;
+}
+
+@end

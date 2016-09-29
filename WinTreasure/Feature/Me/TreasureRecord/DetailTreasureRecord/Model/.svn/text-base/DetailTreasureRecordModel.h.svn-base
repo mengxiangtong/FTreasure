@@ -1,0 +1,18 @@
+//
+//  DetailTreasureRecordModel.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/15.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface DetailTreasureRecordModel : NSObject
+
+@property (copy, nonatomic) NSString *time;
+
+@property (copy, nonatomic) NSString *participateAmount;
+
+
+@end

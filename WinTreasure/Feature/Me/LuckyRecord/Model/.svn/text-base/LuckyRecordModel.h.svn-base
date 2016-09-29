@@ -1,0 +1,28 @@
+//
+//  LuckyRecordModel.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/15.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface LuckyRecordModel : NSObject
+
+@property (nonatomic, copy) NSString *productImgUrl;
+
+@property (nonatomic, copy) NSString *productLuckyNo;
+
+@property (nonatomic, copy) NSString *productPeriodNo;
+
+@property (nonatomic, copy) NSString *productName;
+
+@property (nonatomic, copy) NSString *productPartInAmount;
+
+@property (nonatomic, copy) NSString *productNeedAmount;
+
+@property (nonatomic, copy) NSString *productPublishTime;
+
+
+@end

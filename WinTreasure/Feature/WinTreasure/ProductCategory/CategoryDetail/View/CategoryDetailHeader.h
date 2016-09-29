@@ -1,0 +1,30 @@
+//
+//  CategoryDetailHeader.h
+//  WinTreasure
+//
+//  Created by Apple on 16/6/7.
+//  Copyright © 2016年 linitial. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+typedef void(^CategoryDetailHeaderBlock)(void);
+
+@interface CategoryDetailHeader : UIView
+
+/**商品总数
+ */
+@property (nonatomic, strong) YYLabel *amountLabel;
+
+/**全部加入清单
+ */
+@property (nonatomic, strong) UIButton *addListBtn;
+
+@property (nonatomic, copy) CategoryDetailHeaderBlock addListBlock;
+
++ (instancetype)header;
+
++ (CGFloat)headerHeight;
+
+
+@end

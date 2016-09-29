@@ -1,0 +1,122 @@
+//
+//  TreasureDetailCell.m
+//  WinTreasure
+//
+//  Created by Apple on 16/6/13.
+//  Copyright © 2016年 i-mybest. All rights reserved.
+//
+
+#import "TreasureDetailCell.h"
+
+@interface TreasureDetailCell ()
+
+@end
+
+const CGFloat kHeadImageDiameter = 40.0; //图片直径
+const CGFloat kTreasureDetailCellHeight = 60.0; //cell高度
+const CGFloat kTimeLineCellHeight = 35.0; //cell高度
+
+@implementation TreasureDetailCell
+
+- (void)awakeFromNib {
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:UIEdgeInsetsZero];
+    }
+    CAShapeLayer *seperatorLayer = [CAShapeLayer layer];
+    seperatorLayer.frame = CGRectMake(10+kHeadImageDiameter/2, 0, 0.5, kTreasureDetailCellHeight);
+    seperatorLayer.backgroundColor = UIColorHex(0xEFEAE5).CGColor;
+    [self.contentView.layer insertSublayer:seperatorLayer atIndex:0];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (_clickHeadImage) {
+            _clickHeadImage(_indexPath);
+        }
+    }];
+    [_headImageView addGestureRecognizer:tap];
+}
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"TreasureDetailCell";
+    TreasureDetailCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = (TreasureDetailCell *)[[[NSBundle mainBundle] loadNibNamed:@"TreasureDetailCell" owner:self options:nil] lastObject];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
+}
+
+- (void)setModel:(TreasureDetailModel *)model {
+    _model = model;
+    [_headImageView setImageWithURL:[NSURL URLWithString:_model.imgUrl] options:YYWebImageOptionProgressive];
+    _usernameLabel.text = _model.nickname;
+    _IPLabel.text = _model.ipAddress;
+    NSString *partIntimes = [NSString stringWithFormat:@"%@",_model.partInTimes];
+    NSString *participateStr = [NSString stringWithFormat:@"参与了%@人次 %@",_model.partInTimes,_model.time];
+    NSMutableAttributedString *attrributeStr = [[NSMutableAttributedString alloc]initWithString:participateStr];
+    [attrributeStr addAttributes:@{NSForegroundColorAttributeName:kDefaultColor} range:NSMakeRange(3, partIntimes.length)];
+    _partInLabel.attributedText = attrributeStr;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+@end
+
+
+@interface TimeLineCell ()
+
+
+@end
+
+@implementation TimeLineCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableview {
+    static NSString *cellID = @"TimeLineCell";
+    TimeLineCell *cell = [tableview dequeueReusableCellWithIdentifier:cellID];
+    if (cell == nil) {
+        cell = [[TimeLineCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+    }
+    return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        _timeLabel = [YYLabel new];
+        _timeLabel.origin = CGPointMake(15, 10);
+        _timeLabel.textColor = UIColorHex(999999);
+        _timeLabel.font = SYSTEM_FONT(11);
+        _timeLabel.layer.cornerRadius = 3.0;
+//        _timeLabel.backgroundColor = UIColorHex(0xf5f5f5);
+        [self.contentView addSubview:_timeLabel];
+        
+        [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@10);
+            make.right.equalTo(@-10);
+            make.top.equalTo(@10);
+            make.bottom.equalTo(@-10);
+        }];
+    }
+    return self;
+}
+
+- (void)setTimeLine:(NSString *)timeLine {
+    _timeLine = timeLine;
+    CGFloat width = [_timeLine sizeWithAttributes:@{NSFontAttributeName : SYSTEM_FONT(11)}].width + 8;
+    _timeLabel.size = CGSizeMake(width, _timeLabel.height);
+    _timeLabel.text = _timeLine;
+    [_timeLabel sizeToFit];
+    
+    CAShapeLayer *seperatorLayer = [CAShapeLayer layer];
+    seperatorLayer.frame = CGRectMake(10+kHeadImageDiameter/2, 0, 0.5, _timeLabel.height + 20);
+    seperatorLayer.backgroundColor = UIColorHex(0xEFEAE5).CGColor;
+    [self.contentView.layer insertSublayer:seperatorLayer atIndex:0];
+    
+}
+
+@end
+
